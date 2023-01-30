@@ -1,14 +1,14 @@
 const verify =require('../helpers/jwt');
 
-export const verifyToken=async(req,res,next)=>{
+exports.verifyToken=async(req,res,next)=>{
     try {
-        const authHeader=req.body.token;
+        const authHeader = req.headers["authorization"];
         if(!authHeader){
-            return res.status(401).json({message:"You are not authenticated"});
+            res.status(401).json({message:"You are not authenticated 1"});
         }
-        const token=authHeader.split('')[1];
+        const token=authHeader.split(' ')[1];
         if(!token){
-            res.status(401).json({message:"You are not authenticated"});
+            res.status(401).json({message:"You are not authenticated 2"});
         }
         const verified=verify.verify(token);
         req.user=verified;
@@ -17,4 +17,3 @@ export const verifyToken=async(req,res,next)=>{
         res.status(400).json({message:error})
     }
 }
-module.exports=verifyToken;

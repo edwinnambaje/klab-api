@@ -12,7 +12,12 @@ const UserSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    role:{
+        type:String,
+        default:'user'
+    },
+    token: { type: String },
 },{timestamps:true})
 
 module.exports=mongoose.model('User',UserSchema);
