@@ -1,6 +1,7 @@
 const router=require('express').Router();
 const User=require('../models/User');
 const bcrypt=require('bcrypt');
+const sign=require('../helpers/jwt')
 
 router.post('/register',async(req,res)=>{
     try {
@@ -23,7 +24,8 @@ router.post('/login',async(req,res)=>{
         !user&&res.status(400).json({message:"Invalid User"})
         const validated=await bcrypt.compare(req.body.password,user.password);
         !validated&&res.status(400).json({message:"Invalid Password"})
-        res.status(200).json({message:"Successfully Logged In", data:user})
+        const accessToken=sign.sign({_id:user.id})
+        res.status(200).json({message:"Successfully Logged In", data:user,token:accessToken})
     } catch (error) {
         res.status(500).json({message:"Internal Server error", data:error})
     }
