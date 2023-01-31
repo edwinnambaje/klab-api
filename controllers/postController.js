@@ -32,7 +32,7 @@ exports.updateById=async(req,res)=>{
         const result = await cloudinary.uploader.upload(req.file.path);
         const updatedBlog = await Post.findByIdAndUpdate(req.params.id,{$set:{
             title:req.body.title ? req.body.title : post.title,
-            description:req.body.desc ? req.body.desc : post.desc,
+            desc:req.body.desc ? req.body.desc : post.desc,
             image:result.secure_url
           }},{new:true});
           res.status(200).json({

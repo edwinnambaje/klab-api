@@ -1,6 +1,11 @@
 const listAllBlogs = {
     tags:['Blog'],
     description:"List all Blogs",
+    security: [
+        {
+          token: [],
+        },
+    ],
     responses:{
         200:{
             description:"OK",
@@ -20,6 +25,11 @@ const listAllBlogs = {
 const getBlogById = {
     tags:['Blog'],
     description:"Get blog by id",
+    security: [
+        {
+          token: [],
+        },
+    ],
     parameters:[
         {
             name:"id",
@@ -93,6 +103,11 @@ const createBlog = {
 const deleteBlogPost = {
     tags:['Blog'],
     description:"Delete the blog post by id",
+    security: [
+        {
+          token: [],
+        },
+    ],
     parameters:[
         {
             name:"id",
@@ -121,6 +136,11 @@ const deleteBlogPost = {
 const updateBlogPost = {
     tags:['Blog'],
     description:"Update a Blog post",
+    security: [
+        {
+          token: [],
+        },
+    ],
     parameters:[
         {
             name:"id",

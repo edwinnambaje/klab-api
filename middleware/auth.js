@@ -1,10 +1,10 @@
 const verify =require('../helpers/jwt');
 
-exports.verifyToken=async(req,res,next)=>{
+const verifyToken=async(req,res,next)=>{
     try {
-        const authHeader = req.headers["authorization"];
+        const authHeader = req.headers.token;
         if(!authHeader){
-            res.status(401).json({message:"You are not authenticated"});
+            res.status(401).json({message:"You are not authenticated 1"});
         }
         const token=authHeader.split(' ')[1];
         if(!token){
@@ -17,3 +17,14 @@ exports.verifyToken=async(req,res,next)=>{
         res.status(400).json({message:error})
     }
 }
+const verifyTokenAndRole = (req,res,next) =>{
+    verifyToken(req,res,() =>{
+        if(req.user.role === 'admin'){
+            next();
+        }
+        else{
+            return res.status(401).json({status:"error",error:"You are not authenticated"});
+        }
+    })
+}
+module.exports={verifyToken,verifyTokenAndRole}

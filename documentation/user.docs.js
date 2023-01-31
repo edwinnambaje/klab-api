@@ -1,6 +1,11 @@
 const listAllUsers = {
     tags:['User'],
     description:"List all users",
+    security: [
+        {
+          token: [],
+        },
+    ],
     responses:{
         200:{
             description:"OK",
@@ -110,6 +115,11 @@ responses:{
 const getUserById = {
 tags:['User'],
 description:"Get the user by id",
+security: [
+    {
+      token: [],
+    },
+],
 parameters:[
     {
         name:"id",
@@ -166,6 +176,11 @@ responses:{
 const updateUserById = {
 tags:['User'],
 description:"Update user by id",
+security: [
+    {
+      token: [],
+    },
+],
   parameters:[
     {
         name:"id",
