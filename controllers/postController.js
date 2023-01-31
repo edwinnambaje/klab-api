@@ -36,7 +36,7 @@ exports.updateById=async(req,res)=>{
             image:result.secure_url
           }},{new:true});
           res.status(200).json({
-            status:"successfully added",
+            status:"successfully updated blog",
             data:updatedBlog
           });
         } catch (error) {
