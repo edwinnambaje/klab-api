@@ -1,16 +1,19 @@
 
 const Post=require('../models/Post');
+const cloudinary=require('../helpers/cloudinary');
+
 exports.create=async(req,res)=>{
     try {
-        const post= new Post({
+        const result = await cloudinary.uploader.upload(req.file.path);
+        const post = new Post({
             title:req.body.title,
-            description:req.body.description,
-            image:req.body.image
-        })
+            desc:req.body.desc,
+            image:result.secure_url,
+        });
         await post.save();
-        res.status(200).json({message:"Post created",data:post})
+        res.status(201).json(post);
     } catch (error) {
-        res.status(401).json({message:error})
+        res.status(500).json(error);
     }
 }
 exports.getById=async(req,res)=>{
@@ -23,14 +26,22 @@ exports.getById=async(req,res)=>{
 }
 exports.updateById=async(req,res)=>{
     try {
-        const updatedPost=await Post.findByIdAndUpdate(req.params.id,{
-            $set:req.body
-        },{new:true})
-        await updatedPost.save();
-        res.status(200).json({message:"Post updated successfuly",data:updatedPost})
-    } catch (error) {
-        res.status(401).json({message:error})
-    }
+        const post=await Post.findById(req.params.id);
+        if(!post) return res.status(404).json({status:"fail",error:"The blog is not found"})
+        await cloudinary.uploader.destroy(blog.image);
+        const result = await cloudinary.uploader.upload(req.file.path);
+        const updatedBlog = await Post.findByIdAndUpdate(req.params.id,{$set:{
+            title:req.body.title ? req.body.title : post.title,
+            description:req.body.desc ? req.body.desc : post.desc,
+            image:result.secure_url
+          }},{new:true});
+          res.status(200).json({
+            status:"success",
+            data:updatedBlog
+          });
+        } catch (error) {
+          res.status(500).json({status:"error", error: error.message });
+        }
 }
 exports.deleteById=async(req,res)=>{
     try {
