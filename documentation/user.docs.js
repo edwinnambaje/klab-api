@@ -148,6 +148,11 @@ responses:{
 const deleteUserById = {
 tags:['User'],
 description:"Delete the user by id",
+security: [
+    {
+      token: [],
+    },
+],
 parameters:[
     {
         name:"id",
@@ -245,10 +250,10 @@ exports.userRouteDocs = {
 "/api/users/{id}":{
     get:getUserById,
 },
-"/api/user/{id}":{
+"/api/users/delete/{id}":{
     delete:deleteUserById
 },
-"/api/user/{id}":{
+"/api/users/{id}":{
     put:updateUserById
 }
 };
