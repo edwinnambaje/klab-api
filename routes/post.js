@@ -1,10 +1,10 @@
 const router=require('express').Router();
-const Post=require('../models/Post');
 const postController=require('../controllers/postController');
+const verifyToken=require('../middleware/auth');
 
-router.post('/create',postController.create);
-router.get('/:id',postController.getById);
-router.put('/update/:id',postController.updateById);
-router.delete('/delete/:id',postController.deleteById);
-router.get('/',postController.getAll);
+router.post('/create',verifyToken.verifyToken,postController.create);
+router.get('/:id',verifyToken.verifyToken,postController.getById);
+router.put('/update/:id',verifyToken.verifyToken,postController.updateById);
+router.delete('/delete/:id',verifyToken.verifyToken,postController.deleteById);
+router.get('/',verifyToken.verifyToken,postController.getAll);
 module.exports=router;

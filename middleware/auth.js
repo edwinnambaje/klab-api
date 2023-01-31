@@ -4,7 +4,7 @@ exports.verifyToken=async(req,res,next)=>{
     try {
         const authHeader = req.headers["authorization"];
         if(!authHeader){
-            res.status(401).json({message:"You are not authenticated 1"});
+            res.status(401).json({message:"You are not authenticated"});
         }
         const token=authHeader.split(' ')[1];
         if(!token){

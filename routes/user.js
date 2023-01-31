@@ -1,5 +1,4 @@
 const router=require('express').Router();
-const User=require('../models/User');
 const verifyToken=require('../middleware/auth');
 const userController=require('../controllers/userController');
 
