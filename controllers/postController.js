@@ -11,7 +11,7 @@ exports.create=async(req,res)=>{
             image:result.secure_url,
         });
         await post.save();
-        res.status(201).json(post);
+        res.status(200).json(post);
     } catch (error) {
         res.status(500).json(error);
     }

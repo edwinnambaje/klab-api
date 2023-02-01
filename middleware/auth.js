@@ -14,7 +14,7 @@ const verifyToken=async(req,res,next)=>{
         req.user=verified;
         next();
     } catch (error) {
-        res.status(400).json({message:error})
+        res.status(400).json(error)
     }
 }
 const verifyTokenAndRole = (req,res,next) =>{
@@ -23,7 +23,7 @@ const verifyTokenAndRole = (req,res,next) =>{
             next();
         }
         else{
-            return res.status(401).json({status:"error",error:"You are not authenticated"});
+        res.status(400).json(error)
         }
     })
 }
