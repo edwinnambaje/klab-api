@@ -12,6 +12,10 @@ const PostSchema=new mongoose.Schema({
     image:{
         type:String,
         required:true
-    }
+    },
+    likes: { 
+        type:Number, 
+        default:0
+    },
 })
 module.exports=mongoose.model('Post',PostSchema);
