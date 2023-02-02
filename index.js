@@ -7,6 +7,7 @@ const userRoute=require('./routes/user');
 const postRoute=require('./routes/post');
 const swaggerDocs=require('./documentation/swagger');
 app.use(express.json());
+mongoose.set('strictQuery', true);
 mongoose.connect(process.env.DB_URL)
 .then(console.log("Connected to db"));
 swaggerDocs(app);
