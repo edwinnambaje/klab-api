@@ -8,8 +8,8 @@ const options = {
     openapi: '3.0.0',
     info: {
       version: '1.0.0',
-      title: 'Brand Backend',
-      description: 'brand-api.',
+      title: 'Blog Backend',
+      description: 'Post Api',
     },
     servers: [
       {
