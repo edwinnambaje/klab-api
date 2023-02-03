@@ -158,7 +158,7 @@ const updateBlogPost = {
                         title:{
                             type:"string",
                         },
-                        description:{
+                        desc:{
                             type:"string",
                         },
                         image:{
@@ -259,6 +259,6 @@ exports.blogRouteDocs = {
         post:likeBlog
     },
     "/api/posts/{id}/unlike":{
-        post:unlikeBlog
+        put:unlikeBlog
     }
 }

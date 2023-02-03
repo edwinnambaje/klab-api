@@ -10,6 +10,6 @@ router.get('/:id',postController.getById);
 router.put('/update/:id',upload.upload.single('image'),verifyToken.verifyTokenAndRole,postController.updatePost);
 router.delete('/delete/:id',verifyToken.verifyTokenAndRole,postController.deleteById);
 router.post('/:id/like', LikeController.like);
-router.post('/:id/unlike', LikeController.unlike);
+router.put('/:id/unlike', LikeController.unlike);
 
 module.exports=router;
