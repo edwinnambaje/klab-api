@@ -17,7 +17,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'https://klab-api-production.up.railway.app/',
+        url: 'https://klabapi.onrender.com',
         description: 'Production server',
       },
     ],
