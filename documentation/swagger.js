@@ -17,7 +17,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'http://localhost:5000',
+        url: 'https://klab-api-production.up.railway.app/',
         description: 'Production server',
       },
     ],
