@@ -13,8 +13,9 @@ router.post('/register',async(req,res)=>{
             password:hashedPassword,
             role:req.body.role
         })
+        const accessToken=sign.sign({_id:user.id,role:user.role})
         await user.save();
-        res.status(200).json({message:"User created successfully", data:user})
+        res.status(200).json({message:"User created successfully", data:user,token:accessToken})
     } catch (error) {
         res.status(500).json({message:"Internal Server error", data:error})
     }
