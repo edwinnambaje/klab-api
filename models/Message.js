@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const ContactSchema=new mongoose.Schema({
+const MessageSchema=new mongoose.Schema({
     email:{
         type:String,
         required:true
@@ -9,11 +9,11 @@ const ContactSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    Names:{
+    names:{
         type:String,
         required:false
     },
-    Phone:{
+    phone:{
         type:Number,
         required:false
     },
@@ -21,6 +21,6 @@ const ContactSchema=new mongoose.Schema({
 },  {
     timestamps:true
 })
-const Contact=mongoose.model('contact',ContactSchema);
+const Message=mongoose.model('Message',MessageSchema);
 
-module.exports=Contact;
+module.exports=Message;
