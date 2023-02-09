@@ -72,7 +72,7 @@ const createEstate = {
                         province:{
                             type:"string",
                         },
-                        District:{
+                        district:{
                             type:"string",
                         },
                         street:{

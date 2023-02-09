@@ -59,7 +59,7 @@ exports.updatePost=async(req,res)=>{
 }
 exports.getAll=async(req,res)=>{
     try {
-        const post=await Post.find().populate("comments")
+        const post=await Post.find().populate("comments","comment username")
         res.status(200).json({message:"Fetched Posts successfully",data:post})
     } catch (error) {
         res.status(401).json({message:error})

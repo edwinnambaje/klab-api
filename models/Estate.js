@@ -5,7 +5,7 @@ const EstateSchema=new mongoose.Schema({
         province:{
             type:String
         },
-        District:{
+        district:{
             type:String
         },
         street:{

@@ -12,7 +12,7 @@ exports.create=async(req,res)=>{
             const estate=new Estate({
                 location:{
                     province:req.body.province,
-                    District:req.body.district,
+                    district:req.body.district,
                     street:req.body.street
                 },
                 image:url,

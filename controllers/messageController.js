@@ -1,6 +1,6 @@
 
 const Message=require('../models/Message');
-
+const mailer=require('../helpers/email')
 exports.create=async(req,res)=>{
     const message= new Message({
         email:req.body.email,
@@ -9,6 +9,7 @@ exports.create=async(req,res)=>{
         phone:req.body.phone
     })
     await message.save();
+    await mailer.mailer(req.body.email,req.body.message);
     return res.status(200).json({message:"Message sent successfully",data:message})
 }
 exports.getMessages=async(req,res)=>{
