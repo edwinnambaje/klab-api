@@ -2,6 +2,8 @@ const swaggerUi=require('swagger-ui-express');
 const swaggerJSDocs=require('swagger-jsdoc');
 const userRouteDocs=require('./user.docs');
 const blogRouteDocs=require('./blogs.docs');
+const messageRouteDocs=require('./message.docs');
+const estateRouteDocs=require('./estate.docs')
 
 const options = {
   definition: {
@@ -24,6 +26,8 @@ const options = {
     tags: [
       { name: 'User', description: 'User Routes' },
       { name: 'Blog', description: 'Blog Routes' },
+      { name: 'Message', description: 'Message Routes' },
+      { name: 'Estate', description: 'Estate Routes' },
     ],
     components: {
       securitySchemes: {
@@ -36,7 +40,7 @@ const options = {
         },
       },
     },
-    paths: { ...userRouteDocs.userRouteDocs,...blogRouteDocs.blogRouteDocs},
+    paths: { ...userRouteDocs.userRouteDocs,...blogRouteDocs.blogRouteDocs,...messageRouteDocs.messageRouteDocs,...estateRouteDocs.estateRouteDocs},
   },
   apis: ['../routes/**/*.js'],
 };
