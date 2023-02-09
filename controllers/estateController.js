@@ -1,7 +1,5 @@
 const Estate=require('../models/Estate');
 const cloudinary=require('../helpers/cloudinary');
-const User=require('../models/User');
-const Post=require('../models/Post');
 
 exports.create=async(req,res)=>{
     try {

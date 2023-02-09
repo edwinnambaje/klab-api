@@ -2,12 +2,14 @@ require('dotenv').config();
 const mongoose=require('mongoose');
 const express=require('express');
 const app=express();
+const cors=require('cors')
 const authRoute=require('./routes/auth');
 const userRoute=require('./routes/user');
 const postRoute=require('./routes/post');
 const estateRoute=require('./routes/estate');
 const swaggerDocs=require('./documentation/swagger');
 app.use(express.json());
+app.use(cors({origin:"*"}))
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.DB_URL)
 .then(console.log("Connected to db"));

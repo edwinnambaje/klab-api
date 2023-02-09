@@ -1,11 +1,11 @@
 const mongoose=require('mongoose');
 
 const ContactSchema=new mongoose.Schema({
-    Email:{
+    email:{
         type:String,
         required:true
     },
-    Message:{
+    message:{
         type:String,
         required:true
     },
