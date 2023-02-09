@@ -16,5 +16,9 @@ const PostSchema=new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
     }],
+    // likes:[{
+    //    id:String,
+    //    nbr:{type:Number,default:0}
+    // }],
 },{timestamps:true})
 module.exports=mongoose.model('Post',PostSchema);

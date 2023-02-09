@@ -2,25 +2,37 @@ const mongoose=require('mongoose');
 
 const EstateSchema=new mongoose.Schema({
     location:{
-        type:String
+        province:{
+            type:String
+        },
+        District:{
+            type:String
+        },
+        street:{
+            type:String
+        }
     },
     price:{
         type:String
     },
     YearBuilt:{
-        type:Date
+        type:Date,
+        default: Date.now
     },
-    Images:{
+    image:{
         type:Array,
         default:[]
     },
-    Beds:{
+    beds:{
         type:Number
     },
-    Description:{
+    description:{
         type:String
     },
-    Bath:{
+    status:{
+        type:String
+    },
+    bath:{
         type:Number
     },
     LotSize:{

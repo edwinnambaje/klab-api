@@ -20,30 +20,20 @@ exports.create=async(req,res)=>{
 }
 exports.getById=async(req,res)=>{
     try {
-        const post=await Post.findById(req.params.id).populate({
-            path: "comments",
-            populate: {
-              path: "createdBy",
-            },
-          });
-          let res;
-          if (post) {
-            //get the name of the creator
-            const user = await User.findById(post.createdBy);
-            res = {
-              ...post.toObject(),
-              createdByName: user.username,
-              userImageUrl: user.imagePath,
-            };
-          }
-          return res;
-    } catch (error) {
+        const post=await Post.findById(req.params.id).populate("comments","comment username");
+        res.status(200).json({data:post})
+    } catch (error) {   
         res.status(401).json({message:error})
     }
 }
 exports.deleteById=async(req,res)=>{
     try {
-        await Post.findByIdAndDelete(req.params.id);
+        const post=await Post.findByIdAndDelete(req.params.id);
+        if(post.image){
+            for(let image in estate.image){
+                await cloudinary.uploader.destroy(image);
+            }
+        }
         res.status(200).json({message:"Post deleted successfuly"})
     } catch (error) {
         res.status(401).json({message:error})
