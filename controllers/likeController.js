@@ -1,30 +1,29 @@
-
-const Posts=require('../models/Post');
+const express = require("express");
+const Post = require("../models/Post");
+const User=require('../models/User');
 exports.like = async (req, res) => {
-    try {
-        const post = await Posts.findOne({_id: req.params.id });
-        if (!post) {
-           res.status(500).json({message:"Post not found"})       
-        } 
-        await Posts.updateOne({_id: post._id},{
-            likes: post.likes+1
-        })
-        res.status(200).json({message:'liked'})
-    } catch (err) {
-        res.status(400).json(err)
+    const { id } = req.params;
+    const blog = await Post.findById(id);
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
     }
-}
-exports.unlike = async (req, res) => {
-    try {
-        const post = await Posts.findOne({_id: req.params.id });
-        if (!post) {
-           res.status(500).json({message:"Post not found"})       
-        } 
-        await Posts.updateOne({_id: post._id},{
-            likes: post.likes-1
-        })
-        res.status(200).json({message:'unliked'})
-    } catch (err) {
-        res.status(500).json(err)
+    if (!blog) {
+      return res.status(404).send({ error: "Blog not found" });
     }
-}
+    blog.likes.push(req.user._id);
+    await blog.save();
+    return res.status(200).send({ message:"liked",blog: blog });
+};
+  
+exports.unlike= async (req, res) => {
+    const { id } = req.params;
+    const blog = await Post.findById(id);
+    if (!blog) {
+      return res.status(404).send({ error: "Blog not found" });
+    }
+    const index = blog.likes.indexOf(req.user._id);
+    blog.likes.splice(index, 1);
+    await blog.save();
+    return res.status(200).send({ message:"unliked",blog: blog });
+};

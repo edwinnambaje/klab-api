@@ -4,15 +4,23 @@ const cloudinary=require('../helpers/cloudinary');
 
 exports.create=async(req,res)=>{
     try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+          return res.status(404).send({ error: "User not found" });
+        }
+        //console.log(user)
         const result = await cloudinary.uploader.upload(req.file.path);
         const post = new Post({
             title:req.body.title,
             desc:req.body.desc,
             image:result.secure_url,
-            postedBy:req.user
+            author: user.username,
+            author_id: user._id,
         });
-        console.log(post)
+        console.log(user.username)
         await post.save();
+        user.blogs.push(post._id);
+        await user.save();
         res.status(200).json(post);
     } catch (error) {
         res.status(401).json({message:"error"});
@@ -20,7 +28,7 @@ exports.create=async(req,res)=>{
 }
 exports.getById=async(req,res)=>{
     try {
-        const post=await Post.findById(req.params.id).populate("comments","comment username");
+        const post=await Post.findById(req.params.id).populate("comments","user comment -_id");
         res.status(200).json({data:post})
     } catch (error) {   
         res.status(401).json({message:error})
@@ -36,7 +44,7 @@ exports.deleteById=async(req,res)=>{
         }
         res.status(200).json({message:"Post deleted successfuly"})
     } catch (error) {
-        res.status(401).json({message:error})
+        res.status(401).json({message:"error"})
     }
 }
 exports.updatePost=async(req,res)=>{

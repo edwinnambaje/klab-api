@@ -4,6 +4,10 @@ const Comment=require('../models/Comment')
 const User=require('../models/User')
 exports.createComment=async (req, res) => {
     //Find a POst
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
     const post = await Post.findById(req.params.id);
     if(!post)return res.status(400).json({message:"Post not Found"})
   //Create a Comment
@@ -11,9 +15,9 @@ exports.createComment=async (req, res) => {
     // username:user.username,
     comment:req.body.comment,
     post:req.params.id,
-    username:req.user._id
+    user:user.username,
+    userId:user._id
   });
-  console.log(req.user._id);
   await comment.save();
   //Associate Post with comment
   post.comments.push(comment);

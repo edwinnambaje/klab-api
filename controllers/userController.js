@@ -10,7 +10,7 @@ exports.getAll=async(req,res)=>{
 }
 exports.getById=async(req,res)=>{
     try {
-        const user=await User.findById(req.params.id)
+        const user=await User.findById(req.params.id).populate('blogs');
         res.status(200).json({message:"User by Id",data:user})
     } catch (error) {
         res.status(500).json({message:"Not found"})

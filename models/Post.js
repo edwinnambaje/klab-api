@@ -16,9 +16,18 @@ const PostSchema=new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
     }],
-    // likes:[{
-    //    id:String,
-    //    nbr:{type:Number,default:0}
-    // }],
+    author: {
+        type: String,
+    },
+    author_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
 },{timestamps:true})
 module.exports=mongoose.model('Post',PostSchema);
