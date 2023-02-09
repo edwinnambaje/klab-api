@@ -23,7 +23,8 @@ exports.create=async(req,res)=>{
                 description:req.body.description,
                 bath:req.body.bath,
                 status:req.body.status,
-                LotSize:req.body.lotsize
+                LotSize:req.body.lotsize,
+                YearBuilt:req.body.year
             })
             await estate.save();
             return res.status(200).json(estate)
@@ -75,7 +76,8 @@ exports.updateEstate=async(req,res)=>{
             description:req.body.description,
             bath:req.body.bath,
             status:req.body.status,
-            LotSize:req.body.lotsize
+            LotSize:req.body.lotsize,
+            YearBuilt:req.body.year
           }},{new:true});
           res.status(200).json({
             status:"success",
