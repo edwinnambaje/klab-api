@@ -21,7 +21,7 @@ exports.getSingle=async(req,res)=>{
     return res.status(200).json({message:"Message fetched successfully",data:message})
 }
 exports.delete=async(req,res)=>{
-    const message=await Message.findByIdAndDelete(req.params.id)
+    await Message.findByIdAndDelete(req.params.id)
     return res.status(200).json({message:"Message deleted successfully"})
 }
 exports.update=async(req,res)=>{
