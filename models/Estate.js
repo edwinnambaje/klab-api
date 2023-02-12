@@ -37,7 +37,12 @@ const EstateSchema=new mongoose.Schema({
     },
     LotSize:{
         type:String
-    }
+    },
+    posted_by: {
+        type: String,
+        required: true,
+        ref: "User",
+      },
 },  {
     timestamps:true
 })

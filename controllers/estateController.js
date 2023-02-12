@@ -1,8 +1,13 @@
 const Estate=require('../models/Estate');
 const cloudinary=require('../helpers/cloudinary');
+const User=require('../models/User');
 
 exports.create=async(req,res)=>{
     try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+          return res.status(404).send({ error: "User not found" });
+        }
         const files=req.files;
         const url=[];
         for(const file of files){
@@ -22,7 +27,8 @@ exports.create=async(req,res)=>{
                 bath:req.body.bath,
                 status:req.body.status,
                 LotSize:req.body.lotsize,
-                YearBuilt:req.body.year
+                YearBuilt:req.body.year,
+                posted_by:user.username
             })
             await estate.save();
             return res.status(200).json(estate)

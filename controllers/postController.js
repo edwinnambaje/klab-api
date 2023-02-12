@@ -38,7 +38,7 @@ exports.deleteById=async(req,res)=>{
     try {
         const post=await Post.findByIdAndDelete(req.params.id);
         if(post.image){
-            for(let image in estate.image){
+            for(let image in post.image){
                 await cloudinary.uploader.destroy(image);
             }
         }
