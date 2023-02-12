@@ -22,6 +22,10 @@ const options = {
         url: 'https://klabapi.onrender.com',
         description: 'Production server',
       },
+      {
+        url: 'https://drab-plum-jaguar-ring.cyclic.app',
+        description: 'Production server',
+      },
     ],
     tags: [
       { name: 'User', description: 'User Routes' },
