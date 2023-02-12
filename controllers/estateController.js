@@ -28,7 +28,8 @@ exports.create=async(req,res)=>{
                 status:req.body.status,
                 LotSize:req.body.lotsize,
                 YearBuilt:req.body.year,
-                posted_by:user.username
+                posted_by:user.username,
+                userId:user._id
             })
             await estate.save();
             return res.status(200).json(estate)
@@ -54,9 +55,15 @@ exports.deleteEstate=async(req,res)=>{
     return res.status(200).json({message:"Successfully deleted"})
 }
 exports.updateEstate=async(req,res)=>{
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    const estate=await Estate.findById(req.params.id);
+    if(!estate) return res.status(400).json({message:"Estate not Found"})
+    if(estate.posted_by ===user.username){
+
     try {
-        const estate=await Estate.findById(req.params.id);
-        if(!estate) return res.status(400).json({message:"Estate not Found"})
         if(estate.image){
             for(let image in estate.image){
                 await cloudinary.uploader.destroy(image);
@@ -89,5 +96,9 @@ exports.updateEstate=async(req,res)=>{
           });
         } catch (error) {
             res.status(400).json({status:"error", error: error.message });
-          }
+        }
+    }
+    else{
+        return res.status(400).json({message:"You can not update this estate"})
+    }
 }

@@ -58,11 +58,11 @@ const getEstateById = {
 const createEstate = {
     tags:['Estate'],
     description:"Create an Estate",
-    // security: [
-    //     {
-    //       token: [],
-    //     },
-    // ],
+    security: [
+        {
+          token: [],
+        },
+    ],
     requestBody:{
         content:{
             "multipart/form-data":{
@@ -161,11 +161,11 @@ const deleteEstate = {
 const updatedEstate = {
     tags:['Estate'],
     description:"Update an Estate",
-    // security: [
-    //     {
-    //       token: [],
-    //     },
-    // ],
+    security: [
+        {
+          token: [],
+        },
+    ],
     parameters:[
         {
             name:"id",
