@@ -2,8 +2,10 @@ const router=require('express').Router();
 const User=require('../models/User');
 const bcrypt=require('bcrypt');
 const sign=require('../helpers/jwt')
+const {validate}=require('../middleware/validate');
+const {loginSchema,registerSchema}=require('../validations/userSchema')
 
-router.post('/register',async(req,res)=>{
+router.post('/register',validate(registerSchema),async(req,res)=>{
     try {
         const salt=await bcrypt.genSalt(10);
         const hashedPassword=await bcrypt.hash(req.body.password,salt);
@@ -20,7 +22,7 @@ router.post('/register',async(req,res)=>{
         return res.status(500).json({message:"Internal Server error", data:error})
     }
 })
-router.post('/login',async(req,res)=>{
+router.post('/login',validate(loginSchema),async(req,res)=>{
     try {
         const user=await User.findOne({email:req.body.email});
         if(!user) return res.status(400).json({message:"Invalid User"})

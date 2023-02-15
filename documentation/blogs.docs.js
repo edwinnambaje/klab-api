@@ -58,11 +58,11 @@ const getBlogById = {
 const createBlog = {
     tags:['Blog'],
     description:"Create a Blog post",
-    // security: [
-    //     {
-    //       token: [],
-    //     },
-    // ],
+    security: [
+        {
+          token: [],
+        },
+    ],
     requestBody:{
         content:{
             "multipart/form-data":{
@@ -249,9 +249,6 @@ exports.blogRouteDocs = {
     "/api/posts/{id}":{
         get:getBlogById
     },
-    "/api/posts/delete/{id}":{
-        delete:deleteBlogPost
-    },
     "/api/posts/update/{id}":{
         put:updateBlogPost
     },
@@ -260,5 +257,8 @@ exports.blogRouteDocs = {
     },
     "/api/posts/{id}/unlike":{
         put:unlikeBlog
-    }
+    },
+    "/api/posts/delete/{id}":{
+        delete:deleteBlogPost
+    },
 }

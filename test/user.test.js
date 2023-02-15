@@ -8,7 +8,7 @@ const updateUser = {
   email: 'adminss70@gmail.com',
   password: 'admin12345',
 };
-jest.setTimeout(100000);
+//jest.setTimeout(100000);
 describe('\ntesting users routes', () => {
     describe('POST api/auth/register', () => {
         test('should return the user who created account', async () => {
