@@ -28,7 +28,9 @@ exports.create=async(req,res)=>{
 }
 exports.getById=async(req,res)=>{
     try {
-        const post=await Post.findById(req.params.id).populate("comments","user comment -_id");
+        const post=await Post.findById(req.params.id)
+        .populate([{path:'likedby',select:'user -_id'}, {path:'comments',select:' comment- _id'}]);
+        //.populate([{path: 'likedby'}, {path: 'comments'}])
         res.status(200).json({data:post})
     } catch (error) {   
         res.status(401).json({message:error})
