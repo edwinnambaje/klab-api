@@ -236,6 +236,59 @@ responses:{
     }
 }
 }
+const updatesUserById = {
+    tags:['User'],
+    description:"Update user by id",
+    security: [
+        {
+          token: [],
+        },
+    ],
+      parameters:[
+        {
+            name:"id",
+            in:"path",
+            description:"id of user",
+            type:"string",
+            example:"63caaf3527b29e1d399896da"
+        }
+    ],
+    requestBody:{
+        content:{
+            "application/json":{
+                schema:{
+                    type:"object",
+                    properties:{
+                        email:{
+                            type:"string",
+                            description:"user email",
+                            example:"diamond@gmail.com"
+                        },
+                        password:{
+                            type:"string",
+                            description:"user password",
+                            example:"12345"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    responses:{
+        200:{
+            description:"OK",
+            content:{
+                "application/json":{
+                    type:"object",
+                    example:{
+                        status:"success",
+                        data:[]
+                    }
+                }
+            }
+        }
+    }
+    }
 
 exports.userRouteDocs = {
 "/api/auth/register":{
@@ -255,5 +308,8 @@ exports.userRouteDocs = {
 },
 "/api/users/{id}":{
     put:updateUserById
+},
+"/api/users/user/{id}":{
+    put:updatesUserById
 }
 };

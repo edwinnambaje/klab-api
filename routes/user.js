@@ -6,4 +6,5 @@ router.get('/all',verifyToken.verifyTokenAndRole,userController.getAll);
 router.get('/:id',verifyToken.verifyTokenAndRole,userController.getById);
 router.delete('/delete/:id',verifyToken.verifyTokenAndRole,userController.deleteById);
 router.put('/:id',verifyToken.verifyTokenAndRole,userController.updateById);
+router.put('/user/:id',verifyToken.verifyToken,userController.updateUserById);
 module.exports=router;
