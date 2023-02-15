@@ -23,7 +23,7 @@ exports.create=async(req,res)=>{
         // await user.save();
         res.status(200).json(post);
     } catch (error) {
-        res.status(401).json({message:"error"});
+        res.status(401).json(error);
     }
 }
 exports.getById=async(req,res)=>{
