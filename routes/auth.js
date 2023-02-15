@@ -23,9 +23,9 @@ router.post('/register',async(req,res)=>{
 router.post('/login',async(req,res)=>{
     try {
         const user=await User.findOne({email:req.body.email});
-        !user&&res.status(400).json({message:"Invalid User"})
+        if(!user) return res.status(400).json({message:"Invalid User"})
         const validated=await bcrypt.compare(req.body.password,user.password);
-        !validated&&res.status(400).json({message:"Invalid Password"})
+        if(!validated)  return res.status(400).json({message:"Invalid Password"})
         const accessToken=sign.sign({_id:user.id,role:user.role})
         return res.status(200).json({message:"Successfully Logged In", data:user,token:accessToken})
     } catch (error) {

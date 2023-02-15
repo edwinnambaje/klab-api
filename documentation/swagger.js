@@ -23,7 +23,7 @@ const options = {
         description: 'Production server',
       },
       {
-        url: 'https://drab-plum-jaguar-ring.cyclic.app',
+        url: 'http://localhost:5000',
         description: 'Production server',
       },
     ],
