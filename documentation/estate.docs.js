@@ -69,6 +69,9 @@ const createEstate = {
                 schema:{
                     type:"object",
                     properties:{
+                        title:{
+                            type:"string",
+                        },
                         province:{
                             type:"string",
                         },
@@ -180,7 +183,10 @@ const updatedEstate = {
                 schema:{
                     type:"object",
                     properties:{
-                        province:{
+                        title:{
+                            type:"string",
+                        },
+                        Province:{
                             type:"string",
                         },
                         District:{
@@ -235,7 +241,33 @@ const updatedEstate = {
         }
     }
 }
-
+const likeBlog = {
+    tags:['Estate'],
+    description:"Like an Estate",
+    parameters:[
+        {
+            name:"id",
+            in:"path",
+            description:"id of an Estate",
+            type:"string",
+            example:"63caaf3527b29e1d399896da"
+        }
+    ],
+    responses:{
+        200:{
+            description:"OK",
+            content:{
+                 "application/json":{
+                    type:'object',
+                    example:{
+                        status:"success",
+                        data:[]
+                    }
+                 }
+            }
+        }
+    }
+}
 exports.estateRouteDocs = {
     "/api/estate/create":{
         post:createEstate
@@ -251,5 +283,8 @@ exports.estateRouteDocs = {
     },
     "/api/estate/delete/{id}":{
         delete:deleteEstate
+    },
+    "/api/estate/like/{id}":{
+        put:likeBlog
     },
 }

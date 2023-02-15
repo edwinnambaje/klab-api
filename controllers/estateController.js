@@ -15,6 +15,7 @@ exports.create=async(req,res)=>{
             url.push(result.secure_url)
         }
             const estate=new Estate({
+                title:req.body.title,
                 location:{
                     province:req.body.province,
                     district:req.body.district,

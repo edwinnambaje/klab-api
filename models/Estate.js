@@ -1,6 +1,9 @@
 const mongoose=require('mongoose');
 
 const EstateSchema=new mongoose.Schema({
+    title:{
+        type:String
+    },
     location:{
         province:{
             type:String
@@ -38,9 +41,12 @@ const EstateSchema=new mongoose.Schema({
     LotSize:{
         type:String
     },
-    posted_by: {
-        type: String,
-        required: true,
+    like:{
+        type:Number,
+        default:0
+    },
+    review:{
+        type:Number
     },
     userId:{
         type: mongoose.Schema.Types.ObjectId,
@@ -50,5 +56,4 @@ const EstateSchema=new mongoose.Schema({
     timestamps:true
 })
 const Estate=mongoose.model('estate',EstateSchema);
-
 module.exports=Estate;

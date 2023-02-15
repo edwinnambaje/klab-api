@@ -14,7 +14,7 @@ const comment_schema = new mongoose.Schema({
   },
   post: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Posts"
+    ref: "Post"
   }
 });
 const Comment = mongoose.model("Comment", comment_schema);
