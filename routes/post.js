@@ -5,7 +5,7 @@ const upload=require('../helpers/multer');
 const CommentController = require('../controllers/commentController');
 const likeController = require('../controllers/likeController');
 
-router.post('/create',upload.upload.single('image'),postController.create);
+router.post('/create',verifyToken.verifyTokenAndRole,upload.upload.single('image'),postController.create);
 router.get('/',postController.getAll);
 router.get('/:id',postController.getById);
 router.put('/update/:id',upload.upload.single('image'),verifyToken.verifyTokenAndRole,postController.updatePost);

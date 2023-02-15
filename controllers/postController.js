@@ -4,23 +4,23 @@ const cloudinary=require('../helpers/cloudinary');
 
 exports.create=async(req,res)=>{
     try {
-        // const user = await User.findById(req.user._id);
-        // if (!user) {
-        //   return res.status(404).send({ error: "User not found" });
-        // }
-        //console.log(user)
+        const user = await User.findById(req.user._id);
+        if (!user) {
+          return res.status(404).send({ error: "User not found" });
+        }
+        console.log(user)
         const result = await cloudinary.uploader.upload(req.file.path);
         const post = new Post({
             title:req.body.title,
             desc:req.body.desc,
             image:result.secure_url,
-            // author: user.username,
-            // author_id: user._id,
+            author: user.username,
+            author_id: user._id,
         });
         // console.log(user.username)
         await post.save();
-        // user.blogs.push(post._id);
-        // await user.save();
+        user.blogs.push(post._id);
+        await user.save();
         res.status(200).json(post);
     } catch (error) {
         res.status(401).json(error);
