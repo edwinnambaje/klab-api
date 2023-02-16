@@ -181,11 +181,6 @@ responses:{
 const updateUserById = {
 tags:['User'],
 description:"Update user by id",
-security: [
-    {
-      token: [],
-    },
-],
   parameters:[
     {
         name:"id",
@@ -248,6 +243,6 @@ exports.userRouteDocs = {
     delete:deleteUserById
 },
 "/api/users/update/{id}":{
-    put:updateUserById
+    patch:updateUserById
 }
 };
