@@ -8,6 +8,6 @@ router.post('/create',verifyToken.verifyTokenAndRole,upload.upload.array('image'
 router.get('/',estateController.getAll);
 router.get('/:id',estateController.getSingle);
 router.delete('/delete/:id',estateController.deleteEstate);
-router.put('/update/:id',verifyToken.verifyToken,upload.upload.array('image'),estateController.updateEstate);
-router.put('/like/:id', verifyToken.verifyTokenAndRole,likeController.like)
+router.patch('/update/:id',verifyToken.verifyToken,upload.upload.array('image'),estateController.updateEstate);
+router.patch('/like/:id', verifyToken.verifyTokenAndRole,likeController.like)
 module.exports=router;
