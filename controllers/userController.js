@@ -34,20 +34,20 @@ exports.updateById=async(req,res)=>{
         res.status(500).json({message:"Not found"})
     }
 }
-exports.updateUserById=async(req,res)=>{
-    if(req.user._id === req.params.id){
-        try {
-            console.log("edwin")
-            const updatedUser=await User.findByIdAndUpdate(req.params.id,{
-                $set:req.body
-            },{new:true})
-            res.status(200).json({message:"User Updated Successfully",data:updatedUser})
-        }
-        catch (error) {
-            res.status(500).json({message:"Not found"})
-        }
-    }
-    else{
-        res.status(500).json({message:"You cannot update this user"})
-    }
-}
+// exports.updateUserById=async(req,res)=>{
+//     if(req.user._id === req.params.id){
+//         try {
+//             console.log("edwin")
+//             const updatedUser=await User.findByIdAndUpdate(req.params.id,{
+//                 $set:req.body
+//             },{new:true})
+//             res.status(200).json({message:"User Updated Successfully",data:updatedUser})
+//         }
+//         catch (error) {
+//             res.status(500).json({message:"Not found"})
+//         }
+//     }
+//     else{
+//         res.status(500).json({message:"You cannot update this user"})
+//     }
+// }
