@@ -62,8 +62,6 @@ exports.updateEstate=async(req,res)=>{
     }
     const estate=await Estate.findById(req.params.id);
     if(!estate) return res.status(400).json({message:"Estate not Found"})
-    if(estate.posted_by ===user.username){
-
     try {
         if(estate.image){
             for(let image in estate.image){
@@ -77,6 +75,7 @@ exports.updateEstate=async(req,res)=>{
             url.push(result.secure_url)
         }
         const updatedEstate = await Estate.findByIdAndUpdate(req.params.id,{$set:{
+            title:req.body.title,
             location:{
                 province:req.body.province,
                 District:req.body.district,
@@ -98,8 +97,4 @@ exports.updateEstate=async(req,res)=>{
         } catch (error) {
             res.status(400).json({status:"error", error: error.message });
         }
-    }
-    else{
-        return res.status(400).json({message:"You can not update this estate"})
-    }
 }

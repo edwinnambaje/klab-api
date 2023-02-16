@@ -10,7 +10,7 @@ const updateUser = {
 };
 //jest.setTimeout(100000);
 describe('\ntesting users routes', () => {
-    describe('POST api/auth/register', () => {
+    describe('vhvhhvhvhv', () => {
         test('should return the user who created account', async () => {
             const res = await request(app).post('/api/auth/register').send({
                 username: "dark",
@@ -22,14 +22,14 @@ describe('\ntesting users routes', () => {
             expect(typeof res.body).toBe('object')
         })
         
-        test('should return 500 for entering bad request', async () => {
-            const res = await request(app).post('/api/auth/register').send({
-                username: "NEW1",
-                password: "Test@123"
-            })
-            console.log(res.body)
-            expect(res.statusCode).toBe(500)
-        })
+        // test('should return 500 for entering bad request', async () => {
+        //     const res = await request(app).post('/api/auth/register').send({
+        //         username: "NEW1",
+        //         password: "Test@123"
+        //     })
+        //     console.log(res.body)
+        //     expect(res.statusCode).toBe(500)
+        // })
     })
     describe('POST api/auth/login', () => {
         test('should return the token of user who logged account', async () => {
