@@ -15,10 +15,6 @@ const options = {
     },
     servers: [
       {
-        url: 'https://klabs.onrender.com',
-        description: 'Development server',
-      },
-      {
         url: 'https://klabapi.onrender.com',
         description: 'Production server',
       },
