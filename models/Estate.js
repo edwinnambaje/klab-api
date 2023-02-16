@@ -16,7 +16,8 @@ const EstateSchema=new mongoose.Schema({
         }
     },
     price:{
-        type:String
+        type:Number,
+        default:0
     },
     YearBuilt:{
         type:Date,
@@ -27,7 +28,8 @@ const EstateSchema=new mongoose.Schema({
         default:[]
     },
     beds:{
-        type:Number
+        type:Number,
+        default:0
     },
     description:{
         type:String
@@ -36,7 +38,8 @@ const EstateSchema=new mongoose.Schema({
         type:String
     },
     bath:{
-        type:Number
+        type:Number,
+        default:0
     },
     LotSize:{
         type:String
