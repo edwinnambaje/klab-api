@@ -279,12 +279,12 @@ exports.estateRouteDocs = {
         get:getEstateById
     },
     "/api/estate/update/{id}":{
-        put:updatedEstate
+        patch:updatedEstate
     },
     "/api/estate/delete/{id}":{
         delete:deleteEstate
     },
     "/api/estate/like/{id}":{
-        put:likeBlog
+        patch:likeBlog
     },
 }

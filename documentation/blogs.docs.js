@@ -250,13 +250,13 @@ exports.blogRouteDocs = {
         get:getBlogById
     },
     "/api/posts/update/{id}":{
-        put:updateBlogPost
+        patch:updateBlogPost
     },
     "/api/posts/{id}/like":{
         post:likeBlog
     },
     "/api/posts/{id}/unlike":{
-        put:unlikeBlog
+        patch:unlikeBlog
     },
     "/api/posts/delete/{id}":{
         delete:deleteBlogPost
