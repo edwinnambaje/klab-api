@@ -2,7 +2,7 @@ const verify =require('../helpers/jwt');
 
 const verifyToken=async(req,res,next)=>{
     try {
-        const authHeader =req.headers.authorization;
+        const authHeader =req.headers.Authorization;
         if(!authHeader){
             return res.status(401).json({message:"You are not authenticated 1"});
         }
@@ -14,6 +14,7 @@ const verifyToken=async(req,res,next)=>{
         req.user=verified;
         next();
     } catch (error) {
+        console.log(error)
         res.status(400).json(error)
     }
 }
