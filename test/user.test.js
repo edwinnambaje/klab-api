@@ -2,13 +2,13 @@
 const request =require ("supertest");
 const app=require('../app')
 let token;
-let id;
+var id;
 const updateUser = {
   username: 'edwin70',
   email: 'adminss70@gmail.com',
   password: 'admin12345',
 };
-//jest.setTimeout(100000);
+jest.setTimeout(100000);
 describe('\ntesting users routes', () => {
     describe('vhvhhvhvhv', () => {
         test('should return the user who created account', async () => {
@@ -17,7 +17,6 @@ describe('\ntesting users routes', () => {
                 email: "dark@gmail.com",
                 password: "dark@123"
             })
-            console.log(res.body)
             expect(res.statusCode).toBe(200)
             expect(typeof res.body).toBe('object')
         })
@@ -39,7 +38,7 @@ describe('\ntesting users routes', () => {
             })
             console.log(res.body)
             token=res.body.token
-            id = res.body._id;
+            id = res.body.data._id;
             expect(res.statusCode).toBe(200)
             expect(typeof res.body).toBe('object')
         })
@@ -51,5 +50,24 @@ describe('\ntesting users routes', () => {
             expect(res.statusCode).toBe(400)
             expect(typeof res.body).toBe('object')
        })
+       test('should return all users', async()=>{
+        const res=await request(app).get('/api/users/all')
+        .set('token',`Bearer ${token}`)
+        //console.log(res.body)
+        expect(res.statusCode).toBe(200)
+        })
+        test("should return a single user",async()=>{
+            const res=await request(app).get(`/api/users/${id}`)
+            .set('token',`Bearer ${token}`)
+            console.log(res.body)
+            console.log(id)
+            console.log(token)
+            expect(res.statusCode).toBe(200)
+        })
+        test('should update a user',async()=>{
+            const res=await request(app).patch(`/api/users/update/${id}`).send(updateUser)
+            console.log(res.body)
+            expect(res.statusCode).toBe(200)
+        })
+       })
     }) 
-})
