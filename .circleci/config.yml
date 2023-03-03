@@ -1,0 +1,24 @@
+version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
+jobs:
+  build:
+    docker:
+      - image: circleci/node:15
+    steps:
+      - checkout
+      - run:
+          name: 'INSTALLING DEPENDENCY'
+          command: npm install
+      - run:
+          name: 'TESTING'
+          command: npm run test
+      - coveralls/upload 
+      - store_artifacts:
+          path: test-results
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results

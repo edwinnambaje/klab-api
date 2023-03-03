@@ -10,13 +10,14 @@ const updateUser = {
 };
 jest.setTimeout(100000);
 describe('\ntesting users routes', () => {
-    describe('vhvhhvhvhv', () => {
+    describe('Testing user registration', () => {
         test('should return the user who created account', async () => {
             const res = await request(app).post('/api/auth/register').send({
                 username: "dark",
                 email: "dark@gmail.com",
                 password: "dark@123"
             })
+            console.log(res.body)
             expect(res.statusCode).toBe(200)
             expect(typeof res.body).toBe('object')
         })
@@ -33,8 +34,8 @@ describe('\ntesting users routes', () => {
     describe('POST api/auth/login', () => {
         test('should return the token of user who logged account', async () => {
             const res = await request(app).post('/api/auth/login').send({
-                email: "dars@gmail.com",
-                password: "dar@123"
+                email: "dark@gmail.com",
+                password: "dark@123"
             })
             console.log(res.body)
             token=res.body.token
@@ -65,7 +66,7 @@ describe('\ntesting users routes', () => {
             expect(res.statusCode).toBe(200)
         })
         test('should update a user',async()=>{
-            const res=await request(app).patch(`/api/users/update/${id}`).send(updateUser)
+            const res=await request(app).put(`/api/users/update/${id}`).send(updateUser)
             console.log(res.body)
             expect(res.statusCode).toBe(200)
         })
