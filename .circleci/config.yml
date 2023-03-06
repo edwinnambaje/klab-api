@@ -10,6 +10,11 @@ jobs:
       - run:
           name: 'INSTALLING DEPENDENCY'
           command: npm install
+          environment: 
+            MONGO_URL: MONGO_URL
+            DATABASEURL_TEST: DATABASEURL_TEST
+            JWT_SECRETE: JWT_SECRETE
+            CLOUDINARY_URL: CLOUDINARY_URL
       - run:
           name: 'TESTING'
           command: npm run test
@@ -22,3 +27,6 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: test-results
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=$%7B7DPBEgFW1UssBWlciDkB4WPlBbnh6vltH1K%7D 
